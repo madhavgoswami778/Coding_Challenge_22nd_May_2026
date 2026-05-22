@@ -1,0 +1,36 @@
+def is_palindrome(s: str) -> bool:
+    """
+    Checks whether a given string is a palindrome.
+    Ignores spaces, punctuation, non-alphanumeric characters, and case.
+    """
+    # Clean the string by retaining only lowercase alphanumeric characters
+    normalized = ''.join(ch.lower() for ch in s if ch.isalnum())
+    
+    # Compare the normalized string with its reverse
+    return normalized == normalized[::-1]
+
+def run_palindrome_check():
+    print("--- Palindrome String Checker ---")
+    
+    # Accept input from the user
+    user_string = input("Enter a string to check: ")
+    
+    # Check and print the result
+    if is_palindrome(user_string):
+        print(f'\nResult: "{user_string}" is a palindrome!')
+    else:
+        print(f'\nResult: "{user_string}" is NOT a palindrome.')
+        
+    print("---------------------------------")
+
+# Run the program
+if __name__ == "__main__":
+    run_palindrome_check()
+
+    
+Output:
+--- Palindrome String Checker ---
+Enter a string to check: rever
+
+Result: "rever" is a palindrome!
+---------------------------------
