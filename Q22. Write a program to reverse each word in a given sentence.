@@ -1,0 +1,23 @@
+def reverse_words():
+    print("--- Word Reversal Program ---")
+    
+    # Accept the sentence input from the user
+    sentence = input("Enter a sentence: ").strip()
+    
+    # Split the sentence into words, reverse each word, and join them back with spaces
+    reversed_sentence = " ".join(word[::-1] for word in sentence.split())
+    
+    # Display the results
+    print(f"\nOriginal: {sentence}")
+    print(f"Reversed: {reversed_sentence}")
+    print("-----------------------------")
+
+if __name__ == "__main__":
+    reverse_words()
+
+Output:--- Word Reversal Program ---
+Enter a sentence: I Am Madhav Goswami
+
+Original: I Am Madhav Goswami
+Reversed: I mA vahdaM imawsoG
+-----------------------------
