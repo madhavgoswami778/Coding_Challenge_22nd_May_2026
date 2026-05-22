@@ -1,0 +1,25 @@
+MAX_ATTEMPTS = 3
+correct_username = "admin"
+correct_password = "password123"
+
+attempts = 0
+while attempts < MAX_ATTEMPTS:
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+
+    if username == correct_username and password == correct_password:
+        print("Login successful!")
+        break
+
+    attempts += 1
+    remaining = MAX_ATTEMPTS - attempts
+    print(f"Invalid credentials. {remaining} attempt(s) remaining.")
+
+else:
+    print("Maximum login attempts reached. Access denied.")
+
+
+Output:
+Enter username: admin
+Enter password: password123
+Login successful!
