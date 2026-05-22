@@ -1,0 +1,18 @@
+sales1 = float(input("Enter the first sales figure: "))
+sales2 = float(input("Enter the second sales figure: "))
+sales3 = float(input("Enter the third sales figure: "))
+
+# Find the largest sales figure
+largest_sales = max(sales1, sales2, sales3)
+
+# Display the result
+print(f"\nThe largest sales figure is: {largest_sales}")
+
+
+Output:
+
+Enter the first sales figure: 5
+Enter the second sales figure: 6
+Enter the third sales figure: 7
+
+The largest sales figure is: 7.0
