@@ -1,0 +1,39 @@
+def count_characters(string):
+    """Count the occurrence of each character in a given string using a dictionary."""
+    char_count = {}
+    
+    for char in string:
+        if char in char_count:
+            char_count[char] += 1
+        else:
+            char_count[char] = 1
+    
+    return char_count
+
+
+# Test the function
+if __name__ == "__main__":
+    test_string = "hello world"
+    result = count_characters(test_string)
+    print(f"String: '{test_string}'")
+    print(f"Character count: {result}")
+    
+    # Display in a formatted way
+    print("\nCharacter occurrences:")
+    for char, count in sorted(result.items()):
+        print(f"  '{char}': {count}")
+
+        Output:
+        String: 'hello world'
+Character count: {'h': 1, 'e': 1, 'l': 3, 'o': 2, ' ': 1, 'w': 1, 'r': 1, 'd': 1}
+
+Character occurrences:
+  ' ': 1
+  'd': 1
+  'e': 1
+  'h': 1
+  'l': 3
+  'o': 2
+  'r': 1
+  'w': 1
+
