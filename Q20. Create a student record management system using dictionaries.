@@ -1,0 +1,143 @@
+import json
+import sys
+
+records = {}
+
+def add_student():
+    sid = input("Student ID: ").strip()
+    if not sid:
+        print("ID required")
+        return
+    if sid in records:
+        print("Student already exists")
+        return
+    name = input("Name: ").strip()
+    age = input("Age: ").strip()
+    grade = input("Grade: ").strip()
+    records[sid] = {"name": name, "age": age, "grade": grade}
+    print("Added")
+
+def view_student():
+    sid = input("Student ID: ").strip()
+    s = records.get(sid)
+    if not s:
+        print("Not found")
+        return
+    print(f"ID: {sid}\nName: {s['name']}\nAge: {s['age']}\nGrade: {s['grade']}")
+
+def update_student():
+    sid = input("Student ID: ").strip()
+    s = records.get(sid)
+    if not s:
+        print("Not found")
+        return
+    name = input(f"Name [{s['name']}]: ").strip() or s['name']
+    age = input(f"Age [{s['age']}]: ").strip() or s['age']
+    grade = input(f"Grade [{s['grade']}]: ").strip() or s['grade']
+    records[sid] = {"name": name, "age": age, "grade": grade}
+    print("Updated")
+
+def delete_student():
+    sid = input("Student ID: ").strip()
+    if sid in records:
+        del records[sid]
+        print("Deleted")
+    else:
+        print("Not found")
+
+def list_students():
+    if not records:
+        print("No students")
+        return
+    for sid, s in records.items():
+        print(f"{sid}: {s['name']} (Age: {s['age']}, Grade: {s['grade']})")
+
+def save(filename="students.json"):
+    with open(filename, "w") as f:
+        json.dump(records, f, indent=2)
+    print("Saved to", filename)
+
+def load(filename="students.json"):
+    global records
+    try:
+        with open(filename) as f:
+            records = json.load(f)
+        print("Loaded from", filename)
+    except FileNotFoundError:
+        print("No save file; starting fresh")
+
+def menu():
+    actions = {
+        "1": ("Add", add_student),
+        "2": ("View", view_student),
+        "3": ("Update", update_student),
+        "4": ("Delete", delete_student),
+        "5": ("List all", list_students),
+        "6": ("Save", save),
+        "7": ("Load", load),
+        "0": ("Exit", lambda: sys.exit(0)),
+    }
+    while True:
+        print("\nStudent Records")
+        for k, (n, _) in actions.items():
+            print(f"{k}. {n}")
+        choice = input("Choose: ").strip()
+        act = actions.get(choice)
+        if act:
+            act[1]()
+        else:
+            print("Invalid")
+
+if __name__ == '__main__':
+    load()
+    menu()
+
+Output:
+No save file; starting fresh
+
+Student Records
+1. Add
+2. View
+3. Update
+4. Delete
+5. List all
+6. Save
+7. Load
+0. Exit
+Choose: 6
+Saved to students.json
+
+Student Records
+1. Add
+2. View
+3. Update
+4. Delete
+5. List all
+6. Save
+7. Load
+0. Exit
+Choose: 5
+No students
+
+Student Records
+1. Add
+2. View
+3. Update
+4. Delete
+5. List all
+6. Save
+7. Load
+0. Exit
+Choose: 6
+Saved to students.json
+
+Student Records
+1. Add
+2. View
+3. Update
+4. Delete
+5. List all
+6. Save
+7. Load
+0. Exit
+Choose: 
