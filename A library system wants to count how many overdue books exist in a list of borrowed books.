@@ -1,0 +1,35 @@
+from datetime import datetime
+
+
+def count_overdue_books(borrowed_books, current_date=None):
+    """Count how many borrowed books are overdue.
+
+    borrowed_books should be a list of dictionaries with a 'due_date' field in YYYY-MM-DD format.
+    """
+    if current_date is None:
+        current_date = datetime.utcnow().date()
+    elif isinstance(current_date, str):
+        current_date = datetime.strptime(current_date, "%Y-%m-%d").date()
+
+    overdue_count = 0
+    for book in borrowed_books:
+        due_date = book.get("due_date")
+        if due_date is None:
+            continue
+        if isinstance(due_date, str):
+            due_date = datetime.strptime(due_date, "%Y-%m-%d").date()
+        if due_date < current_date:
+            overdue_count += 1
+    return overdue_count
+
+
+if __name__ == "__main__":
+    borrowed_books = [
+        {"title": "1984", "borrower": "Alice", "due_date": "2026-05-10"},
+        {"title": "Brave New World", "borrower": "Bob", "due_date": "2026-05-21"},
+        {"title": "Fahrenheit 451", "borrower": "Carol", "due_date": "2026-05-15"},
+    ]
+    print(count_overdue_books(borrowed_books, current_date="2026-05-22"))
+
+
+Output: 3
